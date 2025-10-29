@@ -1,7 +1,7 @@
 import React from "react";
 import basicProfileImage from "../assets/img/기본프로필.jpeg";
 
-const NumberList = () => {
+const Contact = () => {
   return (
     <div className="flex flex-col mt-3 gap-2">
       <h3>Number List</h3>
@@ -23,4 +23,4 @@ const NumberList = () => {
   );
 };
 
-export default NumberList;
+export default Contact;
