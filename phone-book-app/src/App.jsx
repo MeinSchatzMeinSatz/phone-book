@@ -1,4 +1,6 @@
 import "./App.css";
+import ContactForm from "./component/Contactform";
+import ContactList from "./component/ContactList";
 
 function App() {
   /*
@@ -9,7 +11,15 @@ function App() {
   */
   return (
     <>
-      <h1 className="text-3xl">연락처</h1>
+      <div className="flex flex-col justify-center items-center">
+        <h1 className="">연락처</h1>
+        <section className="flex justify-center">
+          <article className="flex justify-center">
+            <ContactForm />
+            <ContactList />
+          </article>
+        </section>
+      </div>
     </>
   );
 }
