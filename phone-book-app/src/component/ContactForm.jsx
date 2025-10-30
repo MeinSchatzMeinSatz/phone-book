@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const ContactForm = () => {
@@ -7,9 +7,11 @@ const ContactForm = () => {
   const [phoneNumber, setPhoneNumber] = useState(0);
   const [isName, setIsName] = useState(true);
   const [isPhoneNumber, setIsPhoneNumber] = useState(true);
+  const nameInputRef = useRef(null);
   const dispatch = useDispatch();
   const contactList = useSelector((state) => state.contactList);
 
+  // 연락처 형식이 맞으면 연락처 리스트를 업데이트하는 함수
   function addNumber(e) {
     e.preventDefault();
 
@@ -27,12 +29,12 @@ const ContactForm = () => {
 
     dispatch({ type: "ADD_CONTACT", payload: { name, phoneNumber } });
 
-    localStorage.setItem("CONTACT_LIST", JSON.stringify(contactList));
-
     setName("");
     setPhoneNumber("");
     setIsName(true);
     setIsPhoneNumber(true);
+
+    nameInputRef.current.focus();
   }
 
   function validateName(name) {
@@ -58,6 +60,7 @@ const ContactForm = () => {
         <label htmlFor="name">Name</label>
         <div>
           <input
+            ref={nameInputRef}
             type="text"
             id="name"
             className="w-full border-1"

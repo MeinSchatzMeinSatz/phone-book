@@ -6,18 +6,18 @@ function reducer(state = initialState, action) {
   // 디스트럭처링으로 할당
   const { type, payload } = action;
 
-  // 리듀서 안에 localStorage 접근 -> 추후 미들웨어 학습 이후 리팩토링 예정
-  // 원칙: 리듀서는 순수함수여야 한다.
   console.log(localStorage.getItem("CONTACT_LIST"));
 
+  // 리듀서 안에 localStorage 접근 -> 추후 미들웨어 학습 이후 리팩토링 예정
+  // 원칙: 리듀서는 순수함수여야 한다.
   if (localStorage.getItem("CONTACT_LIST")) {
     initialState.contactList = JSON.parse(localStorage.getItem("CONTACT_LIST"));
   }
 
   switch (type) {
     case "ADD_CONTACT":
-      return {
-        ...state.contactList,
+      const newState = {
+        ...state,
         contactList: [
           ...state.contactList,
           {
@@ -28,6 +28,13 @@ function reducer(state = initialState, action) {
           },
         ],
       };
+
+      localStorage.setItem(
+        "CONTACT_LIST",
+        JSON.stringify(newState.contactList)
+      );
+
+      return newState;
 
     default:
       return { ...state };
