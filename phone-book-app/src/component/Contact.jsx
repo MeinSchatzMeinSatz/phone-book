@@ -3,7 +3,11 @@ import basicProfileImage from "../assets/img/기본프로필.jpeg";
 import { useSelector } from "react-redux";
 
 const Contact = () => {
-  const contactList = useSelector((state) => state.contactList);
+  const contactList = useSelector((state) =>
+    state.filteredContacts.length > 0
+      ? state.filteredContacts
+      : state.contactList
+  );
 
   if (contactList.length === 0) {
     return <div>등록된 연락처가 없습니다.</div>;
