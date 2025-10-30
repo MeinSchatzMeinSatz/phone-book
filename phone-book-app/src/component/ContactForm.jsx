@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ContactForm = () => {
   const [name, setName] = useState("");
@@ -8,6 +8,7 @@ const ContactForm = () => {
   const [isName, setIsName] = useState(true);
   const [isPhoneNumber, setIsPhoneNumber] = useState(true);
   const dispatch = useDispatch();
+  const contactList = useSelector((state) => state.contactList);
 
   function addNumber(e) {
     e.preventDefault();
@@ -26,6 +27,8 @@ const ContactForm = () => {
 
     dispatch({ type: "ADD_CONTACT", payload: { name, phoneNumber } });
 
+    localStorage.setItem("CONTACT_LIST", JSON.stringify(contactList));
+
     setName("");
     setPhoneNumber("");
     setIsName(true);
@@ -38,7 +41,7 @@ const ContactForm = () => {
   }
 
   function validatePhoneNumber(number) {
-    const phoneRegex = /^\d{10,11}$/; // 10자리 또는 11자리 숫자만 허용
+    const phoneRegex = /^\d{11}$/; // 10자리 또는 11자리 숫자만 허용
     return phoneRegex.test(number);
   }
 

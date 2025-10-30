@@ -14,9 +14,12 @@ const Contact = () => {
       <h3>Number List</h3>
 
       <ul className="flex flex-col gap-2">
-        {contactList.map((contact) => {
+        {contactList.map((contact, index) => {
           return (
-            <li className="flex items-center gap-3 bg-[#fff] rounded-[10px] p-2">
+            <li
+              key={index}
+              className="flex items-center gap-3 bg-[#fff] rounded-[10px] p-2"
+            >
               <img
                 src={basicProfileImage}
                 alt="기본 프로필 이미지"

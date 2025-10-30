@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <div className="flex flex-col justify-center items-center">
-        <h1 className="">연락처</h1>
+        <h1 className="">Contact</h1>
         <section className="flex justify-center">
           <article className="flex justify-center">
             <ContactForm />
