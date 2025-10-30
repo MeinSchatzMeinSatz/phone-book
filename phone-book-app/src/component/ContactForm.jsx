@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ContactForm = () => {
   const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(0);
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [isName, setIsName] = useState(true);
   const [isPhoneNumber, setIsPhoneNumber] = useState(true);
   const nameInputRef = useRef(null);
