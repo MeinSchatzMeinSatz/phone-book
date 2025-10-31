@@ -1,7 +1,7 @@
 // 리듀서 안에 localStorage 접근 -> 추후 미들웨어 학습 이후 리팩토링 예정
 // 원칙: 리듀서는 순수함수여야 한다.
 let initialState = {
-  contactList: JSON.parse(localStorage.getItem("CONTACT_LIST")),
+  contactList: [],
   filteredContacts: [],
   searchValue: "",
 };
@@ -12,6 +12,8 @@ function reducer(state = initialState, action) {
 
   switch (type) {
     case "ADD_CONTACT":
+      if (!state.contactList) return (state = []);
+
       const newState = {
         ...state,
         contactList: [

@@ -1,8 +1,14 @@
 // useDebounce.js
-import { useRef, useCallback } from "react";
+import { useRef, useEffect, useCallback } from "react";
 
 export default function useDebounce(callback, delay) {
   const timerRef = useRef(null);
+  const callbackRef = useRef(callback);
+
+  // callback이 변경되면 ref 업데이트
+  useEffect(() => {
+    callbackRef.current = callback;
+  }, [callback]);
 
   const debouncedFunction = useCallback(
     (...args) => {
@@ -13,10 +19,10 @@ export default function useDebounce(callback, delay) {
 
       // 새로운 타이머 설정
       timerRef.current = setTimeout(() => {
-        callback(...args);
+        callbackRef.current(...args); // ref를 통해 최신 callback 호출
       }, delay);
     },
-    [callback, delay]
+    [delay] // callback 제거!
   );
 
   return debouncedFunction;

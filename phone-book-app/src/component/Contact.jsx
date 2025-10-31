@@ -9,7 +9,7 @@ const Contact = () => {
       : state.contactList
   );
 
-  if (contactList.length === 0) {
+  if (!contactList) {
     return <div>등록된 연락처가 없습니다.</div>;
   }
 
