@@ -47,6 +47,20 @@ function reducer(state = initialState, action) {
         searchValue: payload.searchValue,
       };
 
+    case "DELETE_CONTACT":
+      const indexToDelete = payload;
+
+      const updatedContactList = state.contactList;
+
+      updatedContactList.splice(indexToDelete, 1);
+
+      localStorage.setItem("CONTACT_LIST", JSON.stringify(updatedContactList));
+
+      return {
+        ...state,
+        contactList: [...updatedContactList],
+      };
+
     default:
       return { ...state };
   }
