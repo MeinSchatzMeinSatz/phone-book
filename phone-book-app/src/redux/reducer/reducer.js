@@ -49,7 +49,6 @@ function reducer(state = initialState, action) {
 
     case "DELETE_CONTACT":
       const indexToDelete = payload;
-
       const updatedContactList = state.contactList;
 
       updatedContactList.splice(indexToDelete, 1);
