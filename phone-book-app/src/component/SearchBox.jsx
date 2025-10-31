@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import useDebounce from "../utils/useSearchDebounce";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
 
-  function handleInputChange(e) {
-    dispatch({
-      type: "SEARCH_VALUE",
-      payload: { searchValue: e.target.value },
-    });
+  const handleSearch = useDebounce((searchValue) => {
     dispatch({
       type: "SEARCH_CONTACT",
-      payload: { searchValue: e.target.value },
+      payload: { searchValue: searchValue },
     });
-  }
+  }, 300);
 
   return (
     <div className="flex items-center gap-3 p-3">
@@ -23,7 +20,7 @@ const SearchBox = () => {
         id="search"
         className="border-1"
         onChange={(e) => {
-          handleInputChange(e);
+          handleSearch(e.target.value);
         }}
       />
     </div>

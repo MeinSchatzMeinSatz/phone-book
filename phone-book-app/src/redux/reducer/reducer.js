@@ -42,11 +42,6 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         filteredContacts: filteredContacts, // 검색 결과 저장
-      };
-
-    case "SEARCH_VALUE":
-      return {
-        ...state,
         searchValue: payload.searchValue,
       };
 
