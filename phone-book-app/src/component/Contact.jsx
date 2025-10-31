@@ -35,6 +35,7 @@ const Contact = () => {
                   {contact.phoneNumber}
                 </p>
               </div>
+              <button>삭제</button>
             </li>
           );
         })}
