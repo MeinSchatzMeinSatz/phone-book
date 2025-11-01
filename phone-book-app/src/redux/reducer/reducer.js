@@ -8,8 +8,6 @@ function reducer(state = initialState, action) {
   // 디스트럭처링으로 할당
   const { type, payload } = action;
 
-  console.log("로컬스토리지 목록:", localStorage.getItem("CONTACT_LIST"));
-
   switch (type) {
     case "ADD_CONTACT":
       if (!state.contactList) return (state = []);

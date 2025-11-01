@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import basicProfileImage from "../assets/img/기본프로필.jpeg";
 import deleteImage from "../assets/img/delete.jpeg";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,8 @@ const Contact = () => {
   function deleteContact(index) {
     dispatch({ type: "DELETE_CONTACT", payload: index });
   }
+
+  useEffect(() => {}, [contactList]);
 
   if (!contactList) {
     return <div>등록된 연락처가 없습니다.</div>;
