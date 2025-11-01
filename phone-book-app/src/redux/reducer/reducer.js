@@ -1,7 +1,6 @@
 let initialState = {
   contactList: JSON.parse(localStorage.getItem("CONTACT_LIST")) || [],
   filteredContacts: [],
-  searchValue: "",
 };
 
 function reducer(state = initialState, action) {
